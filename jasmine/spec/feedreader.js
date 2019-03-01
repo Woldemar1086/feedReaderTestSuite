@@ -152,8 +152,7 @@ $(function() {
         });
 
         afterAll(function() {
-            var feed = document.querySelectorAll(".feed")[0];
-            feed.innerHTML = '';
+            loadFeed(0);
         });
 
         it("can actually change feed content when a new feed is loaded by the loadFeed function", function(done) {
