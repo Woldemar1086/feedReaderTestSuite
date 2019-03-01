@@ -77,7 +77,7 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
-        afterAll(function() {
+        afterEach(function() {
             var body = document.body;
             if (body && body.className.indexOf('menu-hidden') < 0) {
                 toggleMenu();
