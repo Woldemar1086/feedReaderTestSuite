@@ -10,9 +10,30 @@
  */
 $(function() {
     /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
-    */
+     * a related set of tests. This suite is all about the RSS
+     * feeds definitions, the allFeeds variable in our application.
+     */
+
+    function loopAllFeedsUrlDefined(input) {
+        it('has url in every defined feed', function() {
+            expect(input).toBeDefined();
+        });
+    }
+
+    function loopAllFeedsNameDefined(input) {
+        it('has name in every defined feed', function() {
+            expect(input).toBeDefined();
+        });
+    }
+
+    function loopAllFeedsIsValid(input, output) {
+        if (input && output) {
+            it(input.toString() + ' url in feed isValid: ' + output.toString(), function() {
+                expect(utils.isUrlValid(input)).toEqual(output);
+            });
+        }
+    }
+
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -31,12 +52,26 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        for (let i = 0, len = allFeeds.length; i < len; i++) {
+            loopAllFeedsUrlDefined(allFeeds[i].url);
+        }
+
+        /* TODO: Write a test that loops through each feed
+         * in the allFeeds object and ensures it has a valid URL.
+         */
+        for (let i = 0, len = allFeeds.length; i < len; i++) {
+            loopAllFeedsIsValid(allFeeds[i].url, true);
+        }
+
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        for (let i = 0, len = allFeeds.length; i < len; i++) {
+            loopAllFeedsNameDefined(allFeeds[i].name);
+        }
     });
 
 
