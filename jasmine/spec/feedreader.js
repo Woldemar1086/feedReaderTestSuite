@@ -113,13 +113,32 @@ $(function() {
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
-
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+
+        beforeEach(async function(done) {
+            loadedData = await loadFeed(0, done);
+        });
+
+        afterAll(function() {
+            var feed = document.querySelectorAll(".feed")[0];
+            feed.innerHTML = '';
+        });
+        
+        it("should support async execution of test preparation and expectations", function(done) {
+            var udacityLink = 'blog.udacity.com';
+
+            feedlinkHref = document.querySelectorAll('.feed .entry-link')[0].href.indexOf(udacityLink) > -1;
+
+            expect(feedlinkHref).toBe(true);
+            done();
+        });
+    });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
