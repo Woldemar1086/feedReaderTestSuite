@@ -76,19 +76,42 @@ $(function() {
 
 
     /* TODO: Write a new test suite named "The menu" */
-
+    describe('The menu', function() {
+        afterAll(function() {
+            var body = document.body;
+            if (body && body.className.indexOf('menu-hidden') < 0) {
+                toggleMenu();
+            }
+        });
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+        it('has hidden menu by default', function() {
+            var menuHiddenClass = document.querySelectorAll('.menu-hidden')[0];
+            expect(menuHiddenClass).toBeDefined();
+        });
 
-         /* TODO: Write a test that ensures the menu changes
-          * visibility when the menu icon is clicked. This test
-          * should have two expectations: does the menu display when
-          * clicked and does it hide when clicked again.
-          */
+        /* TODO: Write a test that ensures the menu changes
+         * visibility when the menu icon is clicked. This test
+         * should have two expectations: does the menu display when
+         * clicked and does it hide when clicked again.
+         */
+        it('can toggle class `menu-hidden` on click', function() {
+            var menuHiddenClass, spyOnClickEvent;
 
+            menuLink = document.querySelectorAll('.menu-icon-link')[0];
+            menuHiddenClass = document.querySelectorAll('.menu-hidden')[0];
+
+            spyOnClickEvent = spyOn(menuLink, 'onclick');
+
+            $('.menu-icon-link').click();
+
+            expect(spyOnClickEvent).toHaveBeenCalled();
+            expect(menuHiddenClass.className).toEqual('');
+        });
+    });
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
