@@ -141,9 +141,29 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+
+        beforeEach(async function(done) {
+            loadedData = await loadFeed(2, done);
+        });
+
+        afterAll(function() {
+            var feed = document.querySelectorAll(".feed")[0];
+            feed.innerHTML = '';
+        });
+
+        it("can actually change feed content when a new feed is loaded by the loadFeed function", function(done) {
+            var udacityLink = 'blog.udacity.com',
+                feedlinkHref;
+
+            feedlinkHref = document.querySelectorAll('.feed .entry-link')[0].href.indexOf(udacityLink) === -1;
+
+            expect(feedlinkHref).toBe(true);
+            done();
+        });
+    });
 }());
