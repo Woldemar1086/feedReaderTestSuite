@@ -5,6 +5,16 @@ function isUrlValid(userInput) {
     return isValidUrl.test(userInput);
 }
 
+
+function isEmpty(value) {
+    if (value.constructor === Object) {
+    	console.log(value)
+        return Object.keys(value) <= 0 ? true : false;
+    }
+    return (value === undefined || value == null || value.length <= 0) ? true : false;
+}
+
 var utils = {
-    isUrlValid: isUrlValid
+    isUrlValid: isUrlValid,
+    isEmpty: isEmpty
 }
