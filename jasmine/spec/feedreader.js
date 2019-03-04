@@ -105,14 +105,15 @@ $(function() {
             var menuHiddenClass, spyOnClickEvent;
 
             menuLink = document.querySelectorAll('.menu-icon-link')[0];
-            menuHiddenClass = document.querySelectorAll('.menu-hidden')[0];
-
-            spyOnClickEvent = spyOn(menuLink, 'onclick');
 
             $('.menu-icon-link').click();
+            menuIsNotHidden = document.querySelectorAll('body.menu-hidden')[0];
 
-            expect(spyOnClickEvent).toHaveBeenCalled();
-            expect(menuHiddenClass.className).toEqual('');
+            $('.menu-icon-link').click();
+            menuIsHidden = document.querySelectorAll('body.menu-hidden')[0];
+
+            expect(menuIsHidden).toHaveClass('menu-hidden');
+            expect(menuIsNotHidden).not.toBeDefined();
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
