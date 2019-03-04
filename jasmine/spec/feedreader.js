@@ -16,13 +16,15 @@ $(function() {
 
     function loopAllFeedsUrlDefined(input) {
         it('has url in every defined feed', function() {
-            expect(input).toBeDefined();
+            inputIsEmpty = utils.isEmpty(input);
+            expect(inputIsEmpty).toBe(false);
         });
     }
 
     function loopAllFeedsNameDefined(input) {
         it('has name in every defined feed', function() {
-            expect(input).toBeDefined();
+            inputIsEmpty = utils.isEmpty(input);
+            expect(inputIsEmpty).toBe(false);
         });
     }
 
@@ -31,6 +33,8 @@ $(function() {
             it(input.toString() + ' url in feed isValid: ' + output.toString(), function() {
                 expect(utils.isUrlValid(input)).toEqual(output);
             });
+        } else {
+            expect(utils.isEmpty(input)).toBe(false);
         }
     }
 
@@ -57,20 +61,19 @@ $(function() {
         }
 
         /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a valid URL.
-         */
-        for (let i = 0, len = allFeeds.length; i < len; i++) {
-            loopAllFeedsIsValid(allFeeds[i].url, true);
-        }
-
-
-
-        /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
         for (let i = 0, len = allFeeds.length; i < len; i++) {
             loopAllFeedsNameDefined(allFeeds[i].name);
+        }
+
+
+        /* TODO: Write a test that loops through each feed
+         * in the allFeeds object and ensures it has a valid URL.
+         */
+        for (let i = 0, len = allFeeds.length; i < len; i++) {
+            loopAllFeedsIsValid(allFeeds[i].url, true);
         }
     });
 
@@ -129,7 +132,7 @@ $(function() {
             var feed = document.querySelectorAll(".feed")[0];
             feed.innerHTML = '';
         });
-        
+
         it("should support async execution of test preparation and expectations", function(done) {
             var udacityLink = 'blog.udacity.com';
 
