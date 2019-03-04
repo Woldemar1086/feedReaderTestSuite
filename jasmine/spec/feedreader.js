@@ -92,8 +92,8 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('has hidden menu by default', function() {
-            var menuHiddenClass = document.querySelectorAll('.menu-hidden')[0];
-            expect(menuHiddenClass).toBeDefined();
+            var bodyEl = document.querySelectorAll('body')[0];
+            expect(bodyEl).toHaveClass('menu-hidden');
         });
 
         /* TODO: Write a test that ensures the menu changes
